@@ -11,14 +11,14 @@ ALottaAxolotlsGameMode::ALottaAxolotlsGameMode()
 	PlayerControllerClass = ALottaAxolotlsPlayerController::StaticClass();
 
 	// set default pawn class to our Blueprinted character
-	static ConstructorHelpers::FClassFinder<APawn> PlayerPawnBPClass(TEXT("/Game/TopDown/Blueprints/BP_AxolotlPlayerCharacter"));
+	static ConstructorHelpers::FClassFinder<APawn> PlayerPawnBPClass(TEXT("/Game/Blueprints/BP_AxolotlPlayerCharacter"));
 	if (PlayerPawnBPClass.Class != nullptr)
 	{
 		DefaultPawnClass = PlayerPawnBPClass.Class;
 	}
 
 	// set default controller to our Blueprinted controller
-	static ConstructorHelpers::FClassFinder<APlayerController> PlayerControllerBPClass(TEXT("/Game/TopDown/Blueprints/BP_TopDownPlayerController"));
+	static ConstructorHelpers::FClassFinder<APlayerController> PlayerControllerBPClass(TEXT("/Game/TopDown/Blueprints/BP_AxolotlPlayerController"));
 	if(PlayerControllerBPClass.Class != NULL)
 	{
 		PlayerControllerClass = PlayerControllerBPClass.Class;
