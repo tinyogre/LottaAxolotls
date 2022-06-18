@@ -26,6 +26,18 @@
 				"Mac",
 				"Linux"
 			]
+		},
+		{
+			"Name": "Water",
+			"Enabled": true
+		},
+		{
+			"Name": "WaterExtras",
+			"Enabled": true
+		},
+		{
+			"Name": "GLTFImporter",
+			"Enabled": true
 		}
 	]
 }
