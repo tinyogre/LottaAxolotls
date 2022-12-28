@@ -3,6 +3,7 @@
 #include "LottaAxolotlsGameMode.h"
 #include "LottaAxolotlsPlayerController.h"
 #include "LottaAxolotlsCharacter.h"
+#include "LottaAxolotlsGameState.h"
 #include "UObject/ConstructorHelpers.h"
 
 ALottaAxolotlsGameMode::ALottaAxolotlsGameMode()
@@ -23,4 +24,13 @@ ALottaAxolotlsGameMode::ALottaAxolotlsGameMode()
 	{
 		PlayerControllerClass = PlayerControllerBPClass.Class;
 	}
+
+	GameStateClass = ALottaAxolotlsGameState::StaticClass();
+	bUseSeamlessTravel = true;
+}
+
+bool ALottaAxolotlsGameMode::CanServerTravel(const FString& URL, bool bAbsolute)
+{
+	// YOLO
+	return true;
 }

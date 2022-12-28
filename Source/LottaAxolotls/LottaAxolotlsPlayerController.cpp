@@ -6,12 +6,25 @@
 #include "NiagaraSystem.h"
 #include "NiagaraFunctionLibrary.h"
 #include "LottaAxolotlsCharacter.h"
+#include "LottaAxolotlsGameState.h"
 #include "Engine/World.h"
+
+int gStupidGlobalCount = 0;
 
 ALottaAxolotlsPlayerController::ALottaAxolotlsPlayerController()
 {
 	bShowMouseCursor = true;
 	DefaultMouseCursor = EMouseCursor::Default;
+}
+
+int32 ALottaAxolotlsPlayerController::GetFollowerCount() const
+{
+	return GetWorld()->GetGameState<ALottaAxolotlsGameState>()->GetFollowerCount();
+}
+
+void ALottaAxolotlsPlayerController::SetFollowerCount(int32 NewCount)
+{
+	GetWorld()->GetGameState<ALottaAxolotlsGameState>()->SetFollowerCount(NewCount);
 }
 
 void ALottaAxolotlsPlayerController::PlayerTick(float DeltaTime)
@@ -61,6 +74,15 @@ void ALottaAxolotlsPlayerController::SetupInputComponent()
 	InputComponent->BindTouch(EInputEvent::IE_Pressed, this, &ALottaAxolotlsPlayerController::OnTouchPressed);
 	InputComponent->BindTouch(EInputEvent::IE_Released, this, &ALottaAxolotlsPlayerController::OnTouchReleased);
 
+}
+
+void ALottaAxolotlsPlayerController::OnPossess(APawn* InPawn)
+{
+	Super::OnPossess(InPawn);
+	for (int i = 0; i < GetFollowerCount(); i++)
+	{
+		SpawnBaby();
+	}
 }
 
 void ALottaAxolotlsPlayerController::OnSetDestinationPressed()

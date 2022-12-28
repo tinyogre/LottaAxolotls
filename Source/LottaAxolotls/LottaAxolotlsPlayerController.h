@@ -26,6 +26,18 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input)
 	UNiagaraSystem* FXCursor;
 
+    UPROPERTY(BlueprintReadWrite, BlueprintSetter=SetFollowerCount, BlueprintGetter=GetFollowerCount)
+    int32 FollowerCount = 0;
+
+	UFUNCTION(BlueprintImplementableEvent)
+	void SpawnBaby();
+
+	UFUNCTION(BlueprintGetter)
+	int32 GetFollowerCount() const;
+
+	UFUNCTION(BlueprintSetter)
+	void SetFollowerCount(int32 NewCount);
+	
 protected:
 	/** True if the controlled character should navigate to the mouse cursor. */
 	uint32 bMoveToMouseCursor : 1;
@@ -33,6 +45,7 @@ protected:
 	// Begin PlayerController interface
 	virtual void PlayerTick(float DeltaTime) override;
 	virtual void SetupInputComponent() override;
+	virtual void OnPossess(APawn* InPawn) override;
 	// End PlayerController interface
 
 	/** Input handlers for SetDestination action. */

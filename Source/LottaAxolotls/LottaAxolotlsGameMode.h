@@ -13,6 +13,8 @@ class ALottaAxolotlsGameMode : public AGameModeBase
 
 public:
 	ALottaAxolotlsGameMode();
+
+	virtual bool CanServerTravel(const FString& URL, bool bAbsolute) override;
 };
 
 
